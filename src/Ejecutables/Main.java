@@ -1,5 +1,6 @@
 package Ejecutables;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -10,24 +11,25 @@ import model.Clube;
 public class Main {
 
 	 public static EntityManager getEntityManager(){
-	        EntityManagerFactory factory = Persistence.createEntityManagerFactory("BD-Liga");
+	        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Entrega_JPA");
 	        EntityManager manager = factory.createEntityManager();
 	        return manager;
 	 }
 
+	 public static void closeEntityManager(EntityManager manager){
+		 manager.close();
+	 }
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		EntityManager manager = getEntityManager();
 
-		TypedQuery<Clube> consultaClub= manager.createNamedQuery("Clube.findAll", Clube.class);
-		java.util.List<Clube> lista= consultaClub.getResultList();
-
-		for (Clube a : lista) {
-
-			System.out.println(a.getId()+"," +a.getNombre());
-
+		List<Clube> lista = getEntityManager().createNamedQuery("Clube.findAll").getResultList();
+		for(Clube datos : lista){
+			System.out.println(datos.getId());
+			System.out.println(datos.getNombre());
+			System.out.println(datos.getLocalidad());
+			System.out.println(datos.getProvincia());
 		}
-		manager.close();
+		closeEntityManager(getEntityManager());
 	}
-
 }
