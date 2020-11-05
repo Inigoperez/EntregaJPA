@@ -8,11 +8,15 @@ import java.util.List;
 
 /**
  * The persistent class for the participantes database table.
- * 
+ *
  */
 @Entity
 @Table(name="participantes")
-@NamedQuery(name="Participante.findAll", query="SELECT p FROM Participante p")
+@NamedQueries({
+	@NamedQuery(name="Participante.findAll", query="SELECT p FROM Participante p"),
+	@NamedQuery(name="Participante.findArbitros", query="SELECT P FROM Participante p WHERE p.tipo='arbitro'"),
+	@NamedQuery(name="Participante.findJugadores", query="SELECT P FROM Participante p WHERE P.tipo='jugador'")
+})
 public class Participante implements Serializable {
 	private static final long serialVersionUID = 1L;
 

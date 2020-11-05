@@ -4,15 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.List;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import com.sun.prism.paint.Color;
-
 import model.Clube;
+import model.Partido;
 
-public class ViewTablaClubes extends JFrame{
+public class ViewPartidos extends JFrame{
 
 	private JLabel label1;
 	private JLabel titulo;
@@ -22,7 +20,7 @@ public class ViewTablaClubes extends JFrame{
 	private String[] columnNames = {"ID","Nombre","Localidad","Provincia"};
 	private Object[][] datos = {};
 
-	public ViewTablaClubes(java.util.List<Clube> lista) {
+	public ViewPartidos(java.util.List<Partido> lista) {
 		super("Mostrar lista de clubes");
         this.setSize(600,400);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -52,3 +50,4 @@ public class ViewTablaClubes extends JFrame{
         this.add(contenido);
 	}
 }
+
