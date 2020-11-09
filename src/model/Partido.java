@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name="partidos")
 @NamedQueries({
 	@NamedQuery(name="Partido.findAll", query="SELECT p FROM Partido p"),
-	@NamedQuery(name="Partido.SinArbis", query="SELECT p FROM Partido p WHERE p.ID_arbitro1=null")
 })
 public class Partido implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +28,7 @@ public class Partido implements Serializable {
 	private String localidad;
 
 	//bi-directional many-to-many association to Equipo
-	@ManyToMany(mappedBy="partidos")
+	@ManyToMany(mappedBy="partidos",cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private List<Equipo> equipos;
 
 	//bi-directional many-to-many association to Participante

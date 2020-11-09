@@ -2,22 +2,16 @@ package Ejecutables;
 
 import java.util.List;
 import java.util.Scanner;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JFrame;
-
-import model.Clube;
-import model.Equipo;
-import model.Participante;
-import model.Partido;
-import Vista.ViewTablaClubes;
+import model.*;
+import Vista.*;
 
 public class Main {
 
-	static ViewTablaClubes tablaClubes;
 	static int option;
 	static Scanner sc = new Scanner(System.in);
 
@@ -32,6 +26,7 @@ public class Main {
 	 }
 
 	public static void ViewClubes(){
+		ViewTablaClubes tablaClubes;
 		List<Clube> listaClubes = getEntityManager().createNamedQuery("Clube.findAll").getResultList();
 		closeEntityManager(getEntityManager());
 
@@ -39,6 +34,16 @@ public class Main {
 			tablaClubes.setBounds(10,10,700,300);
 			tablaClubes.setVisible(true);
 		}
+
+	public static void ViewCrearEquipos(){
+		ViewCrearEquipo crearEquipo;
+		List<String> listaClubes = getEntityManager().createNamedQuery("Clube.findName").getResultList();
+		closeEntityManager(getEntityManager());
+		crearEquipo = new ViewCrearEquipo(listaClubes);
+			crearEquipo.setBounds(10,10,400,300);
+			crearEquipo.setVisible(true);
+	}
+
 
 	public static void AsignarArbitros(){
 		List<Participante> listaArbitros = getEntityManager().createNamedQuery("Participante.findArbitros").getResultList();
@@ -67,6 +72,7 @@ public class Main {
 			System.out.println("2.-Mostar partidos");
 			System.out.println("3.-Asignar arbitros a partido");
 			System.out.println("4.-Crear partido");
+			System.out.println("5.-Agregar equipo nuevo");
 			System.out.println("7.-Salir");
 			System.out.println("---------------------------------");
 			option=sc.nextInt();
@@ -78,7 +84,10 @@ public class Main {
 
 				break;
 			case 3:
-				AsignarArbitros();
+				//AsignarArbitros();
+				break;
+			case 5:
+				ViewCrearEquipos();
 				break;
 			case 7:
 				System.out.println("Adios!");

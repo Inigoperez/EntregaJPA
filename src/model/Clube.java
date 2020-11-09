@@ -12,7 +12,8 @@ import java.util.List;
 @Entity
 @Table(name="clubes")
 @NamedQueries({
-	@NamedQuery(name="Clube.findAll", query="SELECT c FROM Clube c")
+	@NamedQuery(name="Clube.findAll", query="SELECT c FROM Clube c"),
+	@NamedQuery(name="Clube.findName", query="Select c.nombre from Clube c")
 })
 public class Clube implements Serializable {
 	private static final long serialVersionUID = 1L;
